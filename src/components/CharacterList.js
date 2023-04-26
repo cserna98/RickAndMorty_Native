@@ -7,7 +7,10 @@ export default function CharacterList(props) {
     const {characters, loadCharacter,isNext} = props;
 
     const laodMore = () => {
+      if(isNext){
         loadCharacter();
+      }
+        
       };
 
     return ( 
@@ -18,8 +21,8 @@ export default function CharacterList(props) {
         keyExtractor = {(character) => String(character.id)}
         renderItem= {({item})=> <CharacterCard character={item}/>}
         contentContainerStyle={styles.flatListContentContainer}
-        onEndReached={isNext && laodMore}
-        
+        onEndReached={isNext&&laodMore}
+        onEndReachedThreshold={0.1}
         ListFooterComponent = {
             <ActivityIndicator
             size="large"

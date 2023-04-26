@@ -1,32 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { View , Text} from "react-native";
+import { ScrollView} from "react-native";
+import Header from '../components/Characterinfo/Header'
 import { getCharacterById } from '../api/CharactersApi'
+import {API_HOST} from '../utils/Contants'
 
-function CharacterInfo(props) {
+export default function CharacterInfo(props) {
 
   const {
     navigation,
-    route: { params },
+    route: {params},
   } = props;
 
   const [character, setCharacter] = useState(null);
+  const [id, setId] = useState();
 
+
+    
   useEffect(() => {
-    (async () => {
+
+    const fetchData = async (id) => {
       try {
-        const response = await getCharacterById(params.id);
+        const url = `${API_HOST}/character/${id}`;
+     
+        const response = await getCharacterById(url);
         setCharacter(response);
+        console.log(response)
       } catch (error) {
+        console.log("no funcione me devuelvo yeiii");
         navigation.goBack();
       }
-    })();
+    };
+    if (params) {
+      fetchData(params.id);
+    }
   }, [params]);
 
+  if (!character) return null;
+
   return ( 
-    <View>
-      <Text>Holi mundo soy un personaje</Text>
-    </View>
+    <ScrollView>
+      <Header
+      name={character.name}
+      gender={character.gender}
+      image={character.image}
+      type={character.types}
+      />
+    </ScrollView>
   );
 }
 
-export default CharacterInfo;

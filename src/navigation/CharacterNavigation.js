@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Characters from '../screen/Characters'
-import  CharacterScreen  from "../screen/CharacterInfo";
+import  CharacterInfo  from "../screen/CharacterInfo";
  
 export default  function CharacterNavigation() {
 
@@ -17,7 +17,7 @@ export default  function CharacterNavigation() {
         />
             <Stack.Screen
                 name="CharacterInfo"
-                component={CharacterScreen}
+                component={CharacterInfo}
                 options={{ title: "", headerTransparent: true }}
         />
         </Stack.Navigator>

@@ -14,7 +14,7 @@ export default function characterCard(props) {
     const navigation = useNavigation();
 
     const goToCharacter=()=>{
-        navigation.navigate("CharacterInfo", { id: character.id });
+        navigation.navigate("CharacterInfo",  { id: character.id } );
         };
 
     return ( 

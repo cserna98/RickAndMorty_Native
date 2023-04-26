@@ -3,7 +3,7 @@ import { API_HOST } from "../utils/Contants";
 
 
 export async function CharacterApi(nexturl) {
-  console.log("si entro a peticion api")
+
     try {
         const url = `${API_HOST}/character`
         const response = await fetch(nexturl || url);
